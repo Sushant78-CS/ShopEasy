@@ -1,16 +1,43 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import React from 'react';
-import { useColorScheme } from 'react-native';
+import { Stack, useRouter, useSegments } from "expo-router";
+import { useEffect } from "react";
+import { ActivityIndicator, View } from "react-native";
+import useAuth from "../hooks/useAuth";
+import useAuthStore from "../store/authStore";
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+export default function RootLayout() {
+  useAuth();
+  const { user, loading } = useAuthStore();
+  const router = useRouter();
+  const segments = useSegments();
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
-  );
+  useEffect(() => {
+    if (loading) return;
+
+    const inAuthGroup = segments?.[0] === "(auth)";
+    const inTabsGroup = segments?.[0] === "(tabs)";
+    const inCheckOut = segments?.[0] === "check";
+    const inProfile = segments?.[0] === "profile";
+    const inAdmin = segments?.[0] === "admin";
+
+    if (!user && !inAuthGroup) {
+      router.replace("/(auth)/login");
+    } else if (user) {
+      if (!inTabsGroup && !inCheckOut && !inProfile && !inAdmin) {
+        router.replace("/(tabs)");
+      }
+    }
+
+    console.log("USER:", user);
+    console.log("SEGMENTS:", segments);
+  }, [user, segments, loading]);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color={"#fff"} />
+      </View>
+    );
+  }
+
+  return <Stack screenOptions={{ headerShown: false }} />;
 }
