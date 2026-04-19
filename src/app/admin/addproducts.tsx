@@ -16,6 +16,7 @@ const AddProducts = () => {
   const [productPrice, setProductPrice] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productImage, setProductImage] = useState("");
+  const [productCategory, setProductCategory] = useState("");
 
   const handleAddProduct = () => {
     if (!productName || !productPrice || !productDescription || !productImage) {
@@ -28,12 +29,14 @@ const AddProducts = () => {
       description: productDescription,
       image: productImage,
       rating: 0,
+      category: productCategory,
     };
     addProduct(product);
     setProductName("");
     setProductPrice("");
     setProductDescription("");
     setProductImage("");
+    setProductCategory("");
   };
 
   return (
@@ -77,6 +80,12 @@ const AddProducts = () => {
               value: productDescription,
               setter: setProductDescription,
               placeholder: "Enter description",
+            },
+            {
+              label: "Category",
+              value: productCategory,
+              setter: setProductCategory,
+              placeholder: "Enter category",
             },
             {
               label: "Image URL",

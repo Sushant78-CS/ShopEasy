@@ -13,14 +13,12 @@ export default function RetailerScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {/* TOP SECTION */}
         <View>
-          {/* HERO */}
           <View style={styles.hero}>
             <Image
               source={{
@@ -34,63 +32,19 @@ export default function RetailerScreen() {
             <Text style={styles.subtitle}>
               No setup headaches. Just list your product and you’re live.
             </Text>
-
             <TouchableOpacity
               style={styles.primaryBtn}
               onPress={() => router.push("/admin/addproducts")}
             >
               <Text style={styles.primaryText}>Start selling</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.secondaryBtnHero}
+              onPress={() => router.push("/admin/products")}
+            >
+              <Text style={styles.secondaryTextHero}>View My Products</Text>
+            </TouchableOpacity>
           </View>
-
-          {/* BENEFITS CARD */}
-          <View style={styles.card}>
-            <Text style={styles.sectionHeading}>Why this works</Text>
-
-            <View style={styles.row}>
-              <Text style={styles.emoji}>📦</Text>
-              <View>
-                <Text style={styles.rowTitle}>List in seconds</Text>
-                <Text style={styles.rowDesc}>
-                  No long forms. Add details and you're done.
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.row}>
-              <Text style={styles.emoji}>⚡</Text>
-              <View>
-                <Text style={styles.rowTitle}>Edit anytime</Text>
-                <Text style={styles.rowDesc}>
-                  Update price, image, or description instantly.
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.row}>
-              <Text style={styles.emoji}>💸</Text>
-              <View>
-                <Text style={styles.rowTitle}>Start with zero cost</Text>
-                <Text style={styles.rowDesc}>
-                  Add products first. Scale when you're ready.
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        {/* BOTTOM CTA */}
-        <View style={styles.bottom}>
-          <TouchableOpacity
-            style={styles.secondaryBtn}
-            onPress={() => router.push("/admin/addproducts")}
-          >
-            <Text style={styles.secondaryText}>Add your first product</Text>
-          </TouchableOpacity>
-
-          <Text style={styles.note}>
-            You’re in control — edit or remove anytime.
-          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -206,5 +160,18 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#888",
     marginTop: 10,
+  },
+  secondaryBtnHero: {
+    marginTop: 10,
+    paddingVertical: 12,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#d1d5db",
+    alignItems: "center",
+  },
+
+  secondaryTextHero: {
+    fontWeight: "500",
+    color: "#333",
   },
 });

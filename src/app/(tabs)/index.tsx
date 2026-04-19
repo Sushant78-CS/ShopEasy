@@ -1,4 +1,5 @@
 import { DeliveryBar, SearchBar } from "@/components";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -6,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -48,7 +50,9 @@ export default function HomeScreen() {
   return (
     <SafeAreaView edges={["top", "bottom"]} style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <DeliveryBar />
+        <TouchableOpacity onPress={() => router.push("/profile/locationEdit")}>
+          <DeliveryBar />
+        </TouchableOpacity>
         <SearchBar search={search} setSearch={setSearch} />
         <ScrollView
           horizontal

@@ -2,10 +2,12 @@ import {
   addDoc,
   collection,
   getDocs,
+  query,
   serverTimestamp,
+  where,
 } from "firebase/firestore";
 import { Alert } from "react-native";
-import { db } from "./firebase";
+import { auth, db } from "./firebase";
 
 export const getProducts = async () => {
   const products = collection(db, "products");
@@ -16,6 +18,28 @@ export const getProducts = async () => {
       ...doc.data(),
     };
   });
+};
+
+export const getRetailerProducts = async () => {
+  try {
+    if (!auth.currentUser) {
+      throw new Error("No user logged in");
+    }
+
+    const q = query(
+      collection(db, "products"),
+      where("userId", "==", auth.currentUser?.uid),
+    );
+
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map((doc: any) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  } catch (error) {
+    console.error("Error fetching retailer products:", error);
+    throw error;
+  }
 };
 
 export interface Product {
@@ -29,9 +53,14 @@ export interface Product {
 
 export const addProduct = async (product: Product) => {
   try {
+    if (!auth.currentUser) {
+      throw new Error("No user logged in");
+    }
+
     const products = collection(db, "products");
     const doc = await addDoc(products, {
       ...product,
+      userId: auth.currentUser?.uid,
       createdAt: serverTimestamp(),
     });
     return {

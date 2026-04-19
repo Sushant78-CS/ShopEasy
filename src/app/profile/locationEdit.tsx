@@ -50,7 +50,7 @@ export default function LocationScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={["top", "bottom"]}>
+    <SafeAreaView edges={["top", "bottom"]} style={{ flex: 1 }}>
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => router.back()}

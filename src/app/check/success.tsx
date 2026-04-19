@@ -44,7 +44,6 @@ export default function PaymentSuccess() {
       <View style={styles.card}>
         <Text style={styles.label}>Transaction ID</Text>
         <Text style={styles.value}>TXN123456789</Text>
-
         <Text style={styles.label}>Amount Paid</Text>
         <Text style={styles.value}>
           {selectItemsInCart.reduce(

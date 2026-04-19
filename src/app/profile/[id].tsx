@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 10,
     borderRadius: 10,
-    marginBottom: 60, // make space for fixed button
+    marginBottom: 60,
   },
 
   productImage: {

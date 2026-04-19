@@ -1,6 +1,6 @@
 import { Stack, useRouter, useSegments } from "expo-router";
 import { useEffect } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, StatusBar, View } from "react-native";
 import useAuth from "../hooks/useAuth";
 import useAuthStore from "../store/authStore";
 
@@ -39,5 +39,10 @@ export default function RootLayout() {
     );
   }
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <>
+      <Stack screenOptions={{ headerShown: false }} />
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+    </>
+  );
 }

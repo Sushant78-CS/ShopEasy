@@ -55,7 +55,6 @@ const CheckOutPage = () => {
             <Image
               source={{ uri: item.image }}
               style={{ height: 120, borderRadius: 8 }}
-              // resizeMode="cover"
             />
             <Text numberOfLines={1}>{item.title}</Text>
             <Text style={{ fontWeight: "bold" }}>₹{item.price}</Text>

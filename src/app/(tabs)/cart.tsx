@@ -5,6 +5,7 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
+  Alert,
   FlatList,
   StyleSheet,
   Text,
@@ -39,6 +40,14 @@ const CartPage = () => {
 
   const selectItemsInCart = products.filter((product) => items[product.id] > 0);
 
+  const checkSignIn = () => {
+    if (selectItemsInCart.length > 0) {
+      route.push("/check/checkout");
+    } else {
+      Alert.alert("Cart is empty");
+    }
+  };
+
   return (
     <SafeAreaView edges={["top", "bottom"]} style={{ flex: 1 }}>
       <FlatList
@@ -66,7 +75,6 @@ const CartPage = () => {
             <Image
               source={{ uri: item.image }}
               style={{ height: 120, borderRadius: 8 }}
-              // resizeMode="cover"
             />
             <Text numberOfLines={1}>{item.title}</Text>
             <Text style={{ fontWeight: "bold" }}>₹{item.price}</Text>
@@ -140,9 +148,7 @@ const CartPage = () => {
             </View>
             <View style={{ padding: 10 }}>
               <TouchableOpacity
-                onPress={() => {
-                  route.push("/check/checkout");
-                }}
+                onPress={checkSignIn}
                 style={{
                   backgroundColor: "black",
                   padding: 15,

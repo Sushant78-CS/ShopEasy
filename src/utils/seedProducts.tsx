@@ -188,7 +188,7 @@ export const seedProducts = async () => {
         createdAt: serverTimestamp(),
       });
     }
-    console.log("🔥 Products added successfully!");
+    console.log("Products added successfully!");
   } catch (error) {
     console.error("Error seeding products:", error);
   }

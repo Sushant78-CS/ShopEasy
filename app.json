@@ -1,21 +1,20 @@
 {
   "expo": {
-    "name": "AmazonClone",
-    "slug": "AmazonClone",
+    "name": "Stack",
+    "slug": "Stack",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "amazonclone",
+    // "icon": "./assets/images/icon.png",
+    "icon": "https://img.icons8.com/?size=100&id=85180&format=png&color=000000",
+    "scheme": "stack",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/carticon.png"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/carticon.png",
+        "backgroundColor": "#ffffff"
       },
       "predictiveBackGestureEnabled": false
     },
